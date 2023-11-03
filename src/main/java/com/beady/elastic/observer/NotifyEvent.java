@@ -9,4 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NotifyEvent {
     private String message;
+    private String from;
+    private String to;
+    private String subject;
 }

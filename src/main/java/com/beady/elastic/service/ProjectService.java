@@ -1,6 +1,7 @@
 package com.beady.elastic.service;
 
 import com.beady.elastic.model.Project;
+import com.beady.elastic.model.Worker;
 import com.beady.elastic.repo.ProjectRepo;
 import com.beady.elastic.repo.WorkerRepo;
 import com.github.javafaker.Faker;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -63,10 +65,11 @@ public class ProjectService {
         return keywords[faker.random().nextInt(keywords.length)] + " Project";
     }
 
-    public void findWorker(String projectId) {
+    public List<Worker> findWorker(String projectId) {
         Optional<Project> project = projectRepo.findById(projectId);
-
-
+        List<Worker> batchWorker=new ArrayList<>();
+         workerRepo.findAll().forEach(worker -> batchWorker.add(worker));
+         return batchWorker;
 
     }
 }
